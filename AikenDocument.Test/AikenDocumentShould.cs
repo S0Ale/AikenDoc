@@ -6,7 +6,9 @@ internal class AikenDocumentShould{
     public void Setup(){ }
 
     [Test]
-    public void Test1(){
-        Assert.Pass();
+    public void Success_CorrectFileLoad(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("TestQuestion.txt"));
+        Assert.That(doc.QuestionCount, Is.EqualTo(1));
     }
 }

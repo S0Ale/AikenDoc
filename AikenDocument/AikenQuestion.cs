@@ -1,6 +1,8 @@
 ﻿namespace AikenDocument;
 
 public class AikenQuestion{
+    public string? CorrectAnswer { get; set; }
+    
     public string Text{ get; set; } = "";
     public List<AikenOption> Options{ get; private set; } = new List<AikenOption>();
 
