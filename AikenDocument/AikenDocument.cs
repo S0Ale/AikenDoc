@@ -14,7 +14,7 @@ public class AikenDocument{
     /// <summary>
     /// The list of questions in the document.
     /// </summary>
-    private List<AikenQuestion> Questions { get; } = [];
+    public List<AikenQuestion> Questions { get; } = [];
     
     /// <summary>
     /// The number of questions in the document.

@@ -1,7 +1,11 @@
+using System.Data.Common;
+
 namespace AikenDocument.Test;
 
 [TestFixture]
 internal class AikenDocumentShould{
+    private string _fileName = "SAVED.txt";
+    
     [SetUp]
     public void Setup(){ }
     
@@ -53,5 +57,20 @@ internal class AikenDocumentShould{
         var doc = new AikenDocument();
         doc.Load(TestService.GetAssetsPath("MultipleQuestions.txt"));
         Assert.That(doc.QuestionCount, Is.EqualTo(3));
+    }
+
+    [Test]
+    public void Success_SaveDocument(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
+        var question = doc.Questions[0];
+        question.Text = "This text has been changed";
+        doc.Save($"{TestService.AssetsDir}/{_fileName}");
+        
+        var savedDoc = new AikenDocument();
+        savedDoc.Load(TestService.GetAssetsPath(_fileName));
+        TestService.RemoveAsset(_fileName);
+        
+        Assert.That(savedDoc.Questions[0].Text, Is.EqualTo("This text has been changed"));
     }
 }
