@@ -90,4 +90,13 @@ internal class AikenDocumentShould{
         
         Assert.That(clone.QuestionCount, Is.EqualTo(doc.QuestionCount));
     }
+    
+    [Test]
+    public void Success_ChangeCorrectAnswer(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
+        doc.Questions[0].SetCorrectOption("B");
+        
+        Assert.That(doc.Questions[0].CorrectAnswer, Is.EqualTo("B"));
+    }
 }
