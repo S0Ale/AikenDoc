@@ -1,22 +1,32 @@
 ﻿namespace AikenDocument;
 
-public class AikenQuestion{
-    public string? CorrectAnswer { get; set; }
-    
-    public string Text{ get; set; } = "";
+/// <summary>
+/// Represents an Aiken question.
+/// </summary>
+public class AikenQuestion(string txt) : AikenElement(txt){
+    /// <summary>
+    /// The options of the question.
+    /// </summary>
     public List<AikenOption> Options{ get; } = [];
 
     /// <summary>
-    /// Sets the correct option of the question
+    /// Sets the correct option of the question.
     /// </summary>
+    /// <param name="optionLetter">The letter of the correct option.</param>
+    /// <exception cref="ArgumentException">Thrown when an invalid letter is provided.</exception>
     public void SetCorrectOption(string optionLetter){
         foreach (var option in Options){
             option.IsCorrect = false;
         }
-        
-        var index = optionLetter.ToUpper()[0] - 'A';
-        if (index >= 0 && index < Options.Count){
-            Options[index].IsCorrect = true;
-        }else throw new ArgumentException("Lettera dell'opzione non valida.");
+
+        foreach (var option in Options.Where(option => option.Letter == optionLetter)){
+            option.IsCorrect = true;
+            return;
+        }
     }
+    
+    /// <summary>
+    /// The correct answer of the question.
+    /// </summary>
+    public string CorrectAnswer => Options.FirstOrDefault(option => option.IsCorrect)?.Letter ?? "";
 }

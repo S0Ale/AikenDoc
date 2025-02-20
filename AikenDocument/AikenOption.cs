@@ -1,8 +1,21 @@
 ﻿namespace AikenDocument;
 
-public class AikenOption{
+/// <summary>
+/// Represents an option of an Aiken question.
+/// </summary>
+public class AikenOption(string txt, string letter) : AikenElement(txt){
+    /// <summary>
+    /// The pattern that an option must match.
+    /// </summary>
     public const string Pattern = @"^[A-E][\.\)]\s+.+$";
 
-    public string Text{ get; set; } = "";
-    public bool IsCorrect { get; set; }
+    /// <summary>
+    /// The letter of the option.
+    /// </summary>
+    public string Letter{ get; } = letter;
+    
+    /// <summary>
+    /// Indicates whether the option is the correct answer.
+    /// </summary>
+    public bool IsCorrect{ get; set; }
 }
