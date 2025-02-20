@@ -1,0 +1,17 @@
+﻿Question number one
+A) hello
+B) world
+C) !
+ANSWER: A
+
+Question number two
+A) hello
+B) world
+C) !!
+ANSWER: B
+
+Question number three
+A) hello
+B) world
+C) !!!
+ANSWER: C
