@@ -8,7 +8,7 @@ namespace AikenDocument;
 public class AikenDocument{
     private const string AnswerPattern = @"^(?i)ANSWER:\s*[A-E]$";
 
-    private List<AikenQuestion> Questions { get; set; } = [];
+    private List<AikenQuestion> Questions { get; } = [];
     
     public int QuestionCount => Questions.Count;
 
@@ -52,9 +52,8 @@ public class AikenDocument{
                 
                 // Check if the answer is valid
                 var index = currentQuestion.CorrectAnswer[0] - 'A';
-                if (index < 0 || index >= currentQuestion.Options.Count){
+                if (index < 0 || index >= currentQuestion.Options.Count)
                     throw new FormatException($"Answer \"{currentQuestion.CorrectAnswer}\" does not match any valid option for the question: \"{currentQuestion.Text}\"");
-                }
             }else{
                 // else create a new question
                 currentQuestion = new AikenQuestion { Text = line.Trim() };
@@ -66,12 +65,5 @@ public class AikenDocument{
         foreach (var question in Questions.Where(question => string.IsNullOrEmpty(question.CorrectAnswer))){
             throw new FormatException($"No answer found for the question: \"{question.Text}\"");
         }
-    }
-
-    /// <summary>
-    /// Finds a question by text
-    /// </summary>
-    public AikenQuestion? FindQuestionByText(string text){
-        return Questions.FirstOrDefault(q => q.Text.Contains(text, StringComparison.OrdinalIgnoreCase));
     }
 }
