@@ -11,7 +11,7 @@ This library will be available on NuGet.
 using AikenDocument;
 
 // Load a document
-var doc = new AikenDocument("path/to/file.txt");
+var doc = new AikenDocument();
 doc.Load("path/to/file.txt");
 
 // Print all questions with their answers
