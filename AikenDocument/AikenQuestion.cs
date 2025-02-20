@@ -27,6 +27,16 @@ public class AikenQuestion(string txt) : AikenElement(txt), ICloneable{
     }
     
     /// <summary>
+    /// Adds a new option to the question.
+    /// </summary>
+    /// <param name="text">The option's text.</param>
+    /// <param name="letter">The option's letter.</param>
+    public void AddOption(string text, string letter){
+        Options.Add(new AikenOption(text, letter));
+        if (Options.Count == 1) Options[0].IsCorrect = true;
+    }
+    
+    /// <summary>
     /// The correct answer of the question.
     /// </summary>
     public string CorrectAnswer => Options.FirstOrDefault(option => option.IsCorrect)?.Letter ?? "";

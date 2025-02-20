@@ -73,4 +73,23 @@ internal class AikenDocumentShould{
         
         Assert.That(savedDoc.Questions[0].Text, Is.EqualTo("This text has been changed"));
     }
+    
+    [Test]
+    public void Success_AppendQuestion(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
+        var question = new AikenQuestion("New question");
+        doc.AppendQuestion(question);
+        
+        Assert.That(doc.QuestionCount, Is.EqualTo(2));
+    }
+    
+    [Test]
+    public void Success_CloneDocument(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
+        var clone = (AikenDocument)doc.Clone();
+        
+        Assert.That(clone.QuestionCount, Is.EqualTo(doc.QuestionCount));
+    }
 }
