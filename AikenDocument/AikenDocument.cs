@@ -24,6 +24,9 @@ public class AikenDocument{
     /// <summary>
     /// Loads an Aiken file from the specified path.
     /// </summary>
+    /// <param name="filePath"> The path to the file.</param>
+    /// <exception cref="FileNotFoundException">Thrown when the file does not exist.</exception>
+    /// <exception cref="FormatException">Thrown when the file is not a text file.</exception>
     public void Load(string filePath){
         if (!File.Exists(filePath))
             throw new FileNotFoundException("The specified file does not exist", filePath);
@@ -54,16 +57,10 @@ public class AikenDocument{
             // If the line is an answer, set the correct answer
             else if (Regex.IsMatch(line, AnswerPattern) && currentQuestion != null){
                 if (!string.IsNullOrEmpty(currentQuestion.CorrectAnswer))
-                    throw new FormatException($"No answer found for the question: \"{currentQuestion.Text}\"");
+                    throw new FormatException($"Question has multiple answers: \"{currentQuestion.Text}\"");
                 
                 // Get and set the correct answer
-                //currentQuestion.CorrectAnswer = line.Split(':')[1].Trim();
                 currentQuestion.SetCorrectOption(line.Split(':')[1].Trim());
-                
-                // Check if the answer is valid
-                //var index = currentQuestion.CorrectAnswer[0] - 'A';
-                //if (index < 0 || index >= currentQuestion.Options.Count)
-                    //throw new FormatException($"Answer \"{currentQuestion.CorrectAnswer}\" does not match any valid option for the question: \"{currentQuestion.Text}\"");
             }else{
                 // else create a new question
                 currentQuestion = new AikenQuestion(line.Trim());
