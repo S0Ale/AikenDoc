@@ -75,6 +75,14 @@ public class AikenDocument : ICloneable{
     }
     
     /// <summary>
+    /// Appends a question to the document.
+    /// </summary>
+    /// <param name="question">The question to be appended.</param>
+    public void AppendQuestion(AikenQuestion question){
+        Questions.Add(question);
+    }
+    
+    /// <summary>
     /// Saves the document to the specified file path.
     /// </summary>
     /// <param name="filePath">The location where the document will be saved.</param>
