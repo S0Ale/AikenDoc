@@ -5,7 +5,7 @@ namespace AikenDocument;
 /// <summary>
 /// Represents a document containing a list of Aiken questions.
 /// </summary>
-public class AikenDocument{
+public class AikenDocument : ICloneable{
     /// <summary>
     /// The pattern that an Aiken answer must match.
     /// </summary>
@@ -93,5 +93,15 @@ public class AikenDocument{
             writer.WriteLine($"ANSWER: {question.CorrectAnswer}");
             writer.WriteLine();
         }
+    }
+
+    /// <summary>
+    /// Creates a new instance of the <see cref="AikenDocument"/> class.
+    /// </summary>
+    /// <returns>a new instance of <see cref="AikenDocument"/>.</returns>
+    public object Clone(){
+        var document = new AikenDocument();
+        foreach (var question in Questions) document.Questions.Add((AikenQuestion)question.Clone());
+        return document;
     }
 }

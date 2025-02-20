@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents an Aiken question.
 /// </summary>
-public class AikenQuestion(string txt) : AikenElement(txt){
+public class AikenQuestion(string txt) : AikenElement(txt), ICloneable{
     /// <summary>
     /// The options of the question.
     /// </summary>
@@ -30,4 +30,14 @@ public class AikenQuestion(string txt) : AikenElement(txt){
     /// The correct answer of the question.
     /// </summary>
     public string CorrectAnswer => Options.FirstOrDefault(option => option.IsCorrect)?.Letter ?? "";
+
+    /// <summary>
+    /// Creates a new instance of the <see cref="AikenQuestion"/> class.
+    /// </summary>
+    /// <returns>A new instance of <see cref="AikenQuestion"/>.</returns>
+    public object Clone(){
+        var question = new AikenQuestion(Text);
+        foreach (var option in Options) question.Options.Add((AikenOption)option.Clone());
+        return question;
+    }
 }
