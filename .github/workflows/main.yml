@@ -18,12 +18,6 @@ jobs:
     - name: Test
       run: dotnet test AikenDocument -c Release --no-build
     - name: Pack nugets
-      run: dotnet pack AikenDocument -c Release --no-build --output .
+      run: dotnet pack AikenDocument -c Release --no-build --output . /p:Version=0.5.0
     - name: Push to NuGet
-      #run: dotnet nuget push "*.nupkg" --api-key ${{secrets.NUGET_SECRET}} --source https://api.nuget.org/v3/index.json
-      uses: wahinekai/actions-publish-nuget@v3.0.1
-      with:
-        version: ${{github.event.release.name}}
-        project-path: AikenDocument/AikenDocument.csproj
-        solution-path: AikenDocument.sln
-        nuget-feed-password: ${{ secrets.NUGET_SECRET }}
+      run: dotnet nuget push "*.nupkg" --api-key ${{secrets.NUGET_SECRET}} --source https://api.nuget.org/v3/index.json
