@@ -1,4 +1,6 @@
 # AikenDocument
+https://img.shields.io/nuget/dt/:AikenDocument
+
 A library to navigate and edit text files written in the Aiken format.
 
 ## Installation
