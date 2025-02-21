@@ -17,10 +17,10 @@ doc.Load("path/to/file.txt");
 
 // Print all questions with their answers
 foreach (var question in doc.Questions){
-    Console.WriteLine($"Domanda: {question.Text}");
+    Console.WriteLine($"Question: {question.Text}");
     
     foreach (var answer in question.Answers){
-        Console.WriteLine($"- {answer.Text} (Corretto: {answer.IsCorrect})");
+        Console.WriteLine($"- {answer.Text} (Correct: {answer.IsCorrect})");
     }
 }
 
