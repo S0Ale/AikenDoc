@@ -1,0 +1,13 @@
+name: Test on release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Echo
+      run: echo ${{ github.event.release.name }}
