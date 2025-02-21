@@ -17,7 +17,12 @@ jobs:
       run: dotnet build AikenDocument -c Release
     - name: Test
       run: dotnet test AikenDocument -c Release --no-build
+    - name: Get Changelog Entry
+      id: changelog_reader
+      uses: mindsers/changelog-reader-action@v2
+      with:
+        path: ./CHANGELOG.md
     - name: Pack nugets
-      run: dotnet pack AikenDocument -c Release --no-build --output . /p:Version=${{ github.event.release.name }}
+      run: dotnet pack AikenDocument -c Release --no-build --output . /p:Version=${{ steps.changelog_reader.outputs.version }}
     - name: Push to NuGet
       run: dotnet nuget push "*.nupkg" --api-key ${{secrets.NUGET_SECRET}} --source https://api.nuget.org/v3/index.json
