@@ -1,7 +1,11 @@
 name: Release to NuGet
 
 on:
-  workflow_call:
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
     
 jobs:
   build:
