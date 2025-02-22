@@ -44,10 +44,30 @@ internal class AikenDocumentShould{
     }
     
     [Test]
-    public void Success_SingleQuestion(){
+    public void Success_LoadFromFilePath(){
         var doc = new AikenDocument();
         doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
         Assert.That(doc.QuestionCount, Is.EqualTo(1));
+    }
+    
+    [Test]
+    public void Success_LoadFromText(){
+        var doc = new AikenDocument();
+        doc.LoadText("What is the capital of France?\nA. Paris\nB. London\nC. Berlin\nD. Madrid\nANSWER: A");
+        Assert.That(doc.QuestionCount, Is.EqualTo(1));
+    }
+    
+    [Test]
+    public void Success_LoadFromStream(){
+        var doc = new AikenDocument();
+        doc.LoadText("What is the capital of France?\nA. Paris\nB. London\nC. Berlin\nD. Madrid\nANSWER: A");
+        var stream = new MemoryStream(); 
+        doc.Save(stream);
+        stream.Position = 0;
+        
+        var newDoc = new AikenDocument();
+        newDoc.Load(stream);
+        Assert.That(newDoc.QuestionCount, Is.EqualTo(1));
     }
     
     [Test]
@@ -58,7 +78,7 @@ internal class AikenDocumentShould{
     }
 
     [Test]
-    public void Success_SaveDocument(){
+    public void Success_SaveDocumentToFile(){
         var doc = new AikenDocument();
         doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
         var question = doc.Questions[0];
@@ -68,7 +88,21 @@ internal class AikenDocumentShould{
         var savedDoc = new AikenDocument();
         savedDoc.Load(TestService.GetAssetsPath(FileName));
         TestService.RemoveAsset(FileName);
+        Assert.That(savedDoc.Questions[0].Text, Is.EqualTo("This text has been changed"));
+    }
+    
+    [Test]
+    public void Success_SaveToStream(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
+        var question = doc.Questions[0];
+        question.Text = "This text has been changed";
+        var stream = new MemoryStream();
+        doc.Save(stream);
+        stream.Position = 0;
         
+        var savedDoc = new AikenDocument();
+        savedDoc.Load(stream);
         Assert.That(savedDoc.Questions[0].Text, Is.EqualTo("This text has been changed"));
     }
     
