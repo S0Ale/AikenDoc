@@ -28,5 +28,6 @@ jobs:
           name: ${{ steps.changelog_reader.outputs.version }}
           tag_name: v${{ steps.changelog_reader.outputs.version }}
           body: ${{ steps.changelog_reader.outputs.changes }}
-      - name: call release to Nuget
-        uses: S0Ale/AikenDocument/.github/workflows/main.yml@main
+  NuGet:
+    uses: S0Ale/AikenDocument/.github/workflows/main.yml@main
+        
