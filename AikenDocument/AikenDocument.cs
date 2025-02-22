@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AikenDocument;
 
@@ -36,6 +37,25 @@ public class AikenDocument : ICloneable{
         var lines = File.ReadAllLines(filePath);
         ParseLines(lines);
     }
+
+    /// <summary>
+    /// Loads an Aiken file from the specified stream.
+    /// </summary>
+    /// <param name="stream"> The stream containing the file.</param>
+    public void Load(Stream stream){
+        var reader = new StreamReader(stream, Encoding.UTF8);
+        var lines = reader.ReadToEnd().Split('\n');
+        ParseLines(lines);
+    }
+    
+    /// <summary>
+    /// Loads an Aiken file from the specified text.
+    /// </summary>
+    /// <param name="text"> The text of the file.</param>
+    public void LoadText(string text){
+        var lines = text.Split('\n');
+        ParseLines(lines);
+    }
     
     /// <summary>
     /// Analyses the lines of the Aiken file and populates the list of questions.
@@ -46,24 +66,25 @@ public class AikenDocument : ICloneable{
         AikenQuestion? currentQuestion = null;
 
         foreach (var line in lines){
+            var text = line.Replace("\r", "");
             if (string.IsNullOrWhiteSpace(line))
                 continue;
 
             // Check if the line is an option
-            if (Regex.IsMatch(line, AikenOption.Pattern) && currentQuestion != null){
-                var option = new AikenOption(line[3..].Trim(), line[0].ToString());
+            if (Regex.IsMatch(text, AikenOption.Pattern) && currentQuestion != null){
+                var option = new AikenOption(text[3..].Trim(), text[0].ToString());
                 currentQuestion.Options.Add(option);
             }
             // If the line is an answer, set the correct answer
-            else if (Regex.IsMatch(line, AnswerPattern) && currentQuestion != null){
+            else if (Regex.IsMatch(text, AnswerPattern) && currentQuestion != null){
                 if (!string.IsNullOrEmpty(currentQuestion.CorrectAnswer))
                     throw new FormatException($"Question has multiple answers: \"{currentQuestion.Text}\"");
                 
                 // Get and set the correct answer
-                currentQuestion.SetCorrectOption(line.Split(':')[1].Trim());
+                currentQuestion.SetCorrectOption(text.Split(':')[1].Trim());
             }else{
                 // else create a new question
-                currentQuestion = new AikenQuestion(line.Trim());
+                currentQuestion = new AikenQuestion(text.Trim());
                 Questions.Add(currentQuestion);
             }
         }
@@ -101,6 +122,27 @@ public class AikenDocument : ICloneable{
             writer.WriteLine($"ANSWER: {question.CorrectAnswer}");
             writer.WriteLine();
         }
+    }
+    
+    /// <summary>
+    /// Saves the document to the specified stream.
+    /// </summary>
+    /// <param name="stream"> The stream where the document will be saved.</param>
+    public void Save(Stream stream){
+        var writer = new StreamWriter(stream);
+        foreach (var question in Questions){
+            // Question text
+            writer.WriteLine(question.Text);
+
+            // Options
+            foreach (var option in question.Options)
+                writer.WriteLine($"{option.Letter}) {option.Text}");
+
+            // Correct answer
+            writer.WriteLine($"ANSWER: {question.CorrectAnswer}");
+            writer.WriteLine();
+        }
+        writer.Flush();
     }
 
     /// <summary>
