@@ -5,7 +5,16 @@ A library to navigate and edit text files written in the Aiken format.
 
 ## Installation
 
-This library will be available on NuGet.
+This library is available as a NuGet package. You can install it using the following command:
+
+```bash
+dotnet add package AikenDocument # .NET CLI
+```
+Or by adding the following line to your `.csproj` file:
+```xml
+<PackageReference Include="AikenDocument" Version="0.6.0" />
+```
+[More options](https://www.nuget.org/packages/AikenDocument/)
 
 ## Usage
 
