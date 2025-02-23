@@ -1,4 +1,4 @@
-﻿namespace AikenDocument;
+﻿namespace AikenDoc;
 
 /// <summary>
 /// Represents an element of an Aiken question.

@@ -1,4 +1,4 @@
-namespace AikenDocument.Test;
+namespace AikenDoc.Test;
 
 [TestFixture]
 internal class AikenDocumentShould{

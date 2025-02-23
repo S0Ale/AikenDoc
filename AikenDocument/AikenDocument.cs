@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace AikenDocument;
+namespace AikenDoc;
 
 /// <summary>
 /// Represents a document containing a list of Aiken questions.

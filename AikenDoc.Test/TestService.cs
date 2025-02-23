@@ -1,4 +1,4 @@
-﻿namespace AikenDocument.Test;
+﻿namespace AikenDoc.Test;
 
 internal abstract class TestService{
     public const string AssetsDir = "./assets";
