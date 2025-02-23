@@ -5,6 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageReadmeFile>readme-nuget.md</PackageReadmeFile>
+
+        <RootNamespace>AikenDocument</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
