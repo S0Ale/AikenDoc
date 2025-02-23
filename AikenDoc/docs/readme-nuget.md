@@ -1,11 +1,11 @@
-# AikenDocument
+# AikenDoc
 
 A library to navigate and edit text files written in the Aiken format.
 
 ## Usage
 
 ```csharp
-using AikenDocument;
+using AikenDoc;
 
 // Load a document
 var doc = new AikenDocument();
