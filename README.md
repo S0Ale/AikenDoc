@@ -1,5 +1,5 @@
 # AikenDoc
-[![Test](https://github.com/S0Ale/AikenDocument/actions/workflows/test.yml/badge.svg)](https://github.com/S0Ale/AikenDocument/actions/workflows/test.yml) ![NuGet Version](https://img.shields.io/nuget/v/AikenDocument)
+[![Test](https://github.com/S0Ale/AikenDocument/actions/workflows/test.yml/badge.svg)](https://github.com/S0Ale/AikenDocument/actions/workflows/test.yml) ![NuGet Version](https://img.shields.io/nuget/v/AikenDoc)
 
 A library to navigate and edit text files written in the Aiken format.
 
