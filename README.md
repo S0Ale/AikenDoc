@@ -12,7 +12,7 @@ dotnet add package AikenDoc # .NET CLI
 ```
 Or by adding the following line to your `.csproj` file:
 ```xml
-<PackageReference Include="AikenDoc" Version="0.6.0" />
+<PackageReference Include="AikenDoc" Version="0.6.1" />
 ```
 [More options](https://www.nuget.org/packages/AikenDoc/)
 
