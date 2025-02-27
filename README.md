@@ -14,7 +14,7 @@ Or by adding the following line to your `.csproj` file:
 ```xml
 <PackageReference Include="AikenDoc" Version="0.6.0" />
 ```
-[More options](https://www.nuget.org/packages/AikenDocument/)
+[More options](https://www.nuget.org/packages/AikenDoc/)
 
 ## Usage
 
