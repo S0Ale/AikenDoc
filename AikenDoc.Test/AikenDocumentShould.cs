@@ -78,6 +78,13 @@ internal class AikenDocumentShould{
     }
 
     [Test]
+    public void Success_GetElements(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("MultipleQuestions.txt"));
+        Assert.That(doc.GetElements(), Has.Count.EqualTo(12));
+    }
+
+    [Test]
     public void Success_SaveDocumentToFile(){
         var doc = new AikenDocument();
         doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
