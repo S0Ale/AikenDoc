@@ -102,6 +102,20 @@ public class AikenDocument : ICloneable{
     public void AppendQuestion(AikenQuestion question){
         Questions.Add(question);
     }
+
+    /// <summary>
+    /// Returns a list of Aiken elements present in the document.
+    /// </summary>
+    /// <returns></returns>
+    public List<AikenElement> GetElements(){
+        List<AikenElement> elements = [];
+        foreach (var question in Questions){
+            elements.Add(question);
+            elements.AddRange(question.Options);
+        }
+
+        return elements;
+    }
     
     /// <summary>
     /// Saves the document to the specified file path.
