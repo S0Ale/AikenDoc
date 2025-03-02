@@ -39,7 +39,7 @@ public class AikenQuestion(string txt) : AikenElement(txt), ICloneable{
         foreach (var option in Options)
             builder = builder.AppendLine($"{option.Letter}) {option.Text}");
         
-        builder = builder.AppendLine($"ANSWER: {CorrectAnswer}");
+        builder = builder.Append($"ANSWER: {CorrectAnswer}");
         
         return builder.ToString();
     }

@@ -122,7 +122,17 @@ internal class AikenDocumentShould{
         
         Assert.That(doc.QuestionCount, Is.EqualTo(2));
     }
-    
+
+    [Test]
+    public void Success_GetQuestionText(){
+        var doc = new AikenDocument();
+        doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
+        
+        Assert.That(doc.Questions.First().GetAllText(), Is.EqualTo(
+            "What is the correct answer to this question?\r\nA) Is it this one?\r\nB) Maybe this answer?\r\nC) Possibly this one?\r\nD) Must be this one!\r\nANSWER: D"
+            ));
+    }
+
     [Test]
     public void Success_CloneDocument(){
         var doc = new AikenDocument();
