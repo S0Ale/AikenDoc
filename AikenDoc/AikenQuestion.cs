@@ -1,4 +1,6 @@
-﻿namespace AikenDoc;
+﻿using System.Text;
+
+namespace AikenDoc;
 
 /// <summary>
 /// Represents an Aiken question.
@@ -25,7 +27,23 @@ public class AikenQuestion(string txt) : AikenElement(txt), ICloneable{
             return;
         }
     }
-    
+
+    /// <summary>
+    /// Returns the text of the question and its options.
+    /// </summary>
+    /// <returns>All the question text.</returns>
+    public string GetAllText(){
+        var builder = new StringBuilder();
+        // Add question text with a new line
+        builder = builder.AppendLine(Text);
+        foreach (var option in Options)
+            builder = builder.AppendLine($"{option.Letter}) {option.Text}");
+        
+        builder = builder.AppendLine($"ANSWER: {CorrectAnswer}");
+        
+        return builder.ToString();
+    }
+
     /// <summary>
     /// Adds a new option to the question.
     /// </summary>

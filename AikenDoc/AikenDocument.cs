@@ -131,7 +131,7 @@ public class AikenDocument : ICloneable{
             // Options
             foreach (var option in question.Options)
                 writer.WriteLine($"{option.Letter}) {option.Text}");
-
+            
             // Correct answer
             writer.WriteLine($"ANSWER: {question.CorrectAnswer}");
             writer.WriteLine();
