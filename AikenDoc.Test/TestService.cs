@@ -13,6 +13,8 @@ internal abstract class TestService{
             File.Delete($"{AssetsDir}/{fileName}");
     }
     
+    public static string NormalizeLineEndings(string text) => text.Replace("\r\n", "\n").Replace("\r", "\n");
+    
     public static string GetTextFromFile(string fileName){
         return File.ReadAllText($"{AssetsDir}/{fileName}");
     }

@@ -128,8 +128,8 @@ internal class AikenDocumentShould{
         var doc = new AikenDocument();
         doc.Load(TestService.GetAssetsPath("SingleQuestion.txt"));
         
-        Assert.That(doc.Questions.First().GetAllText(), Is.EqualTo(
-            "What is the correct answer to this question?\r\nA) Is it this one?\r\nB) Maybe this answer?\r\nC) Possibly this one?\r\nD) Must be this one!\r\nANSWER: D"
+        Assert.That(TestService.NormalizeLineEndings(doc.Questions.First().GetAllText()), Is.EqualTo(
+            TestService.NormalizeLineEndings("What is the correct answer to this question?\nA) Is it this one?\nB) Maybe this answer?\nC) Possibly this one?\nD) Must be this one!\nANSWER: D")
             ));
     }
 
