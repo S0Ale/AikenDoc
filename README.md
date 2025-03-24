@@ -35,7 +35,7 @@ foreach (var question in doc.Questions){
 }
 
 // Set the correct answer of the first question to B
-doc.Questions[0].SetCorrectOption("B");
+doc.Questions[0].CorrectAnswer = "B";
 
 // Save the document to a new file path
 doc.Save("path/to/new_file.txt");
