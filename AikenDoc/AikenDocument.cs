@@ -61,7 +61,7 @@ public class AikenDocument : ICloneable{
     /// Analyses the lines of the Aiken file and populates the list of questions.
     /// </summary>
     /// <param name="lines">The lines of the document.</param>
-    /// <exception cref="FormatException">Thrown when the file has no answer or the answer does not match any option.</exception>
+    /// <exception cref="FormatException">Thrown when a question has no answer.</exception>
     private void ParseLines(string[] lines){
         AikenQuestion? currentQuestion = null;
 
