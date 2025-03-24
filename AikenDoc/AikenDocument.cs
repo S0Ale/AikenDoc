@@ -10,7 +10,7 @@ public class AikenDocument : ICloneable{
     /// <summary>
     /// The pattern that an Aiken answer must match.
     /// </summary>
-    private const string AnswerPattern = @"^(?i)ANSWER:\s*[A-E]$";
+    private const string AnswerPattern = @"^(?i)ANSWER:\s*.*$";
 
     /// <summary>
     /// The list of questions in the document.
@@ -81,7 +81,7 @@ public class AikenDocument : ICloneable{
                     throw new FormatException($"Question has multiple answers: \"{currentQuestion.Text}\"");
                 
                 // Get and set the correct answer
-                currentQuestion.SetCorrectOption(text.Split(':')[1].Trim());
+                currentQuestion.CorrectAnswer = text.Split(':')[1].Trim();
             }else{
                 // else create a new question
                 currentQuestion = new AikenQuestion(text.Trim());
@@ -89,7 +89,6 @@ public class AikenDocument : ICloneable{
             }
         }
         
-        // Check if all questions have a correct answer
         foreach (var question in Questions.Where(question => string.IsNullOrEmpty(question.CorrectAnswer))){
             throw new FormatException($"No answer found for the question: \"{question.Text}\"");
         }
@@ -116,7 +115,7 @@ public class AikenDocument : ICloneable{
 
         return elements;
     }
-    
+
     /// <summary>
     /// Saves the document to the specified file path.
     /// </summary>

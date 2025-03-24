@@ -15,15 +15,10 @@ public class AikenOption(string txt, string letter) : AikenElement(txt), IClonea
     public string Letter{ get; } = letter;
     
     /// <summary>
-    /// Indicates whether the option is the correct answer.
-    /// </summary>
-    public bool IsCorrect{ get; set; }
-
-    /// <summary>
     /// Creates a new instance of the <see cref="AikenOption"/> class.
     /// </summary>
     /// <returns>A new instance of <see cref="AikenOption"/>.</returns>
     public object Clone(){
-        return new AikenOption(Text, Letter){ IsCorrect = IsCorrect };
+        return new AikenOption(Text, Letter);
     }
 }
