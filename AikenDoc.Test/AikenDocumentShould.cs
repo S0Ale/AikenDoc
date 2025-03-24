@@ -25,12 +25,6 @@ internal class AikenDocumentShould{
         Assert.Throws<FormatException>(() => doc.Load(TestService.GetAssetsPath("NoAnswer.txt")));
     }
     
-    [Test][Ignore("Obsolete test")]
-    public void Throw_InvalidAnswer(){
-        var doc = new AikenDocument();
-        Assert.Throws<FormatException>(() => doc.Load(TestService.GetAssetsPath("InvalidAnswer.txt")));
-    }
-    
     [Test]
     public void Throw_MultipleAnswers(){
         var doc = new AikenDocument();

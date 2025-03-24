@@ -34,9 +34,6 @@
       <None Update="assets\SingleQuestion.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="assets\InvalidAnswer.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
       <None Update="assets\InvalidOption.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
